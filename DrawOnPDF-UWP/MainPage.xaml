@@ -1,0 +1,25 @@
+﻿<Page
+    x:Class="DrawOnPDF_UWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DrawOnPDF_UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:syncfusion="using:Syncfusion.Windows.PdfViewer"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.DataContext>
+        <local:PdfViewerViewModel/>
+    </Page.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <CheckBox Content="Ink the PDF" Command="{Binding ElementName=pdfViewerControl, Path=InkAnnotationCommand}" CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"/>
+            <Button Content="Save PDF" Click="SaveButton_OnClick"/>
+        </StackPanel>
+        <syncfusion:SfPdfViewerControl x:Name="pdfViewerControl" Grid.Row="1" ItemsSource="{Binding DocumentStream}"/>
+    </Grid>
+</Page>
